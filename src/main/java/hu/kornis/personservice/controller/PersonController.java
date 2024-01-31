@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import hu.kornis.personservice.model.Person;
 import hu.kornis.personservice.service.PersonService;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("persons")
@@ -34,12 +35,12 @@ public class PersonController {
 	}
 	
 	@PostMapping("add")
-	public ResponseEntity<Person> addPerson(@RequestBody Person person) {
+	public ResponseEntity<Person> addPerson(@RequestBody @Valid Person person) {
 		return personService.addPerson(person);
 	}
 	
 	@PutMapping("update/{id}")
-	public ResponseEntity<Person> updatePersonById(@PathVariable int id, @RequestBody Person person) {
+	public ResponseEntity<Person> updatePersonById(@PathVariable int id, @RequestBody @Valid Person person) {
 		return personService.updatePersonById(id, person);
 	}
 	
